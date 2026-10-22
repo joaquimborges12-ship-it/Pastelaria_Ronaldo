@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pastelaria">
+<meta name="theme-color" content="#12161d">
+<title>Pastelaria</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#12161d;--p1:#161b24;--p2:#181d26;--card:#1f2632;--k:#232a36;--ln:#2a3140;--ln2:#3a4253;--tx:#e8eaee;--mu:#a3abb9;--red:#e04a3a;--red2:#f26b5b;--ok:#2e7d4f}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;background:none;border:0}
+button:active{transform:scale(.96)}
+button:disabled{opacity:.35}
+#root{height:100%;display:flex;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{height:64px;flex:none;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:var(--p2);border-bottom:1px solid var(--ln)}
+.brand{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:26px;color:#fff}
+.sub{font-size:14px;color:var(--mu);margin-left:12px}
+.tabs{display:flex;gap:10px}
+.tab{height:48px;padding:0 26px;border-radius:0;border:1px solid var(--ln2);color:var(--mu);font-weight:700;font-size:17px}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff}
+.body{flex:1;display:flex;min-height:0}
+aside{width:400px;flex:none;padding:18px;background:var(--p1);border-right:1px solid var(--ln);display:flex;flex-direction:column;gap:12px;min-height:0}
+.h2{font-family:Oswald,Impact,sans-serif;font-weight:500;font-size:22px;margin:0;letter-spacing:.5px}
+.fichas{flex:1;overflow:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-content:start}
+.f{position:relative;height:62px;border-radius:0;background:var(--k);color:#8b93a1;font-family:Oswald,Impact,sans-serif;font-size:24px;font-weight:700}
+.f.ab{border:2px solid var(--red);background:var(--card);color:#fff}
+.f.sel{background:var(--red);color:#fff;border:0}
+.f .b{position:absolute;top:4px;right:6px;font:700 11px Inter,sans-serif;color:var(--red2)}
+.f.sel .b{color:#fff}
+.tools{display:flex;gap:10px;flex:none}
+.tool{flex:1;height:56px;border-radius:0;border:1px solid var(--ln2);background:var(--card);display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px}
+.tool svg{width:22px;height:22px}
+main{flex:1;display:flex;flex-direction:column;min-width:0;min-height:0}
+.scroll{flex:1;overflow:auto;padding:18px 22px;display:flex;flex-direction:column;gap:16px}
+.h1{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:40px;margin:0;color:#fff}
+.lbl{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--red2);text-transform:uppercase;margin-bottom:8px}
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.prod{position:relative;height:104px;border-radius:0;border:1px solid #2f3747;background:#1b212b;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 8px}
+.prod.on{border:2px solid var(--red);background:#22191b}
+.prod svg{width:40px;height:30px;flex:none}
+.prod .n{font-size:16px;font-weight:700;text-align:center;line-height:1.15}
+.prod .p{font-size:13px;color:var(--mu)}
+.prod .q{position:absolute;top:0;right:0;min-height:30px;min-width:26px;height:26px;border-radius:0;background:var(--red);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;padding:0 6px}
+.c0{background:#3a2125}.c1{background:#2a2f22}.c2{background:#1f2a36}.c3{background:#30263a}.c4{background:#203532}.c5{background:#3a3222}
+footer{flex:none;min-height:104px;padding:14px 22px;background:var(--p2);border-top:1px solid var(--ln);display:flex;align-items:center;gap:12px}
+.chips{flex:1;display:flex;flex-wrap:wrap;gap:8px;min-width:0;max-height:100px;overflow:auto}
+.chip{height:44px;padding:0 6px 0 14px;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-size:15px;font-weight:600;display:flex;align-items:center;gap:10px}
+.chip span{width:32px;height:32px;border-radius:0;background:var(--ln2);display:flex;align-items:center;justify-content:center;font-size:20px}
+.tot{text-align:right;white-space:nowrap}.tot small{font-size:13px;color:var(--mu)}.tot div{font-family:Oswald,Impact,sans-serif;font-size:30px;font-weight:700}
+.big{height:68px;padding:0 24px;border-radius:0;background:var(--red);color:#fff;font-family:Oswald,Impact,sans-serif;font-size:21px;font-weight:700}
+.ghost{height:68px;padding:0 18px;border-radius:0;border:1px solid var(--ln2);color:var(--mu);font-size:15px;font-weight:600}
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--mu);font-size:19px;gap:8px;text-align:center;padding:30px}
+.disp{height:80px;flex:none;border-radius:0;background:#0d1016;border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-family:Oswald,Impact,sans-serif;font-size:50px;font-weight:700;color:#fff}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none}
+.kp button{height:62px;border-radius:0;background:var(--k);font-family:Oswald,Impact,sans-serif;font-size:28px;font-weight:700}
+.kp .x{font-size:17px;color:var(--mu);font-family:Inter,sans-serif}
+.abl{flex:1;display:flex;flex-wrap:wrap;gap:8px;overflow:auto;align-content:start}
+.abl button{min-width:56px;height:48px;padding:0 8px;border-radius:0;border:2px solid var(--red);background:var(--card);font-family:Oswald,Impact,sans-serif;font-size:20px;font-weight:700}
+.abl button.on{background:var(--red)}
+.box{border-radius:0;background:#1b212b;border:1px solid var(--ln)}
+.row{min-height:54px;padding:6px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--ln);font-size:18px}
+.row .qq{width:44px;font-family:Oswald,Impact,sans-serif;font-weight:700;color:var(--red2)}
+.row .nn{flex:1;font-weight:600}
+.row .vv{color:var(--mu)}
+.totrow{height:72px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+.pag{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pag button{height:100px;border-radius:0;border:1px solid var(--ln2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff}
+.pag b{font-family:Oswald,Impact,sans-serif;font-size:26px}
+.pag small{font-size:13px;opacity:.85}
+.pag .on{border:3px solid #fff}
+.notas{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.notas button{height:52px;padding:0 16px;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-weight:700;font-size:16px}
+.page{flex:1;overflow:auto;padding:20px 24px 60px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+input,select{font:inherit;color:var(--tx);background:#0d1016;border:1px solid var(--ln2);border-radius:0;height:48px;padding:0 12px;font-size:16px;user-select:text;-webkit-user-select:text;min-width:0}
+.cfr{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--ln)}
+.cfr .nm{flex:1}
+.cfr .pr{width:120px;text-align:right}
+.ib{width:48px;height:48px;flex:none;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-size:18px;display:flex;align-items:center;justify-content:center}
+.btn{height:48px;padding:0 18px;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.card{padding:18px;border-radius:0;background:#1b212b;border:1px solid var(--ln)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi small{color:var(--mu);font-size:13px;font-weight:600}
+.kpi div{font-family:Oswald,Impact,sans-serif;font-size:32px;font-weight:700;margin-top:4px}
+.bar{height:12px;border-radius:0;background:var(--k);overflow:hidden;flex:1}.bar i{display:block;height:100%}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td,th{padding:10px 8px;border-bottom:1px solid var(--ln);text-align:left}
+th{font-size:12px;color:var(--mu);letter-spacing:1px;text-transform:uppercase}
+.r{text-align:right}
+.seg{display:flex;border:1px solid var(--ln2);border-radius:0;overflow:hidden}
+.seg button{height:48px;padding:0 20px;color:var(--mu);font-weight:700}
+.seg .on{background:var(--red);color:#fff}
+.mut{color:var(--mu)}
+.ov{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;z-index:5;padding:20px}
+.modal{width:min(820px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--p1);border:2px solid var(--red);box-shadow:0 20px 60px #000c}
+.modal footer{min-height:96px}
+.toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ok);color:#fff;padding:16px 26px;border-radius:0;font-weight:700;font-size:18px;z-index:9;box-shadow:0 10px 30px #0008}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const KEY = 'pastelaria_v1';
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const pad = n => String(n).padStart(2, '0');
+const ymd = t => { const d = new Date(t); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+const hhmm = t => { const d = new Date(t); return pad(d.getHours()) + ':' + pad(d.getMinutes()); };
+const R = v => (v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function seed() {
+  const it = (cat, nome) => ({ id: uid() + nome.length, cat, nome, preco: 0 });
+  return {
+    v: 1, nFichas: 30, cats: ['Pastéis', 'Sucos e café', 'Bebidas', 'Bolo'],
+    itens: [it('Pastéis', 'Carne'), it('Pastéis', 'Carne com queijo'), it('Pastéis', 'Presunto e queijo'), it('Pastéis', 'Queijo'),
+      it('Sucos e café', 'Suco de laranja'), it('Sucos e café', 'Suco de acerola'), it('Sucos e café', 'Suco de maracujá'), it('Sucos e café', 'Café (copo)'),
+      it('Bebidas', 'Coca-Cola lata'), it('Bebidas', 'Guaraná lata'), it('Bebidas', 'Del Valle'), it('Bebidas', 'Água sem gás'),
+      it('Bolo', 'Bolo (pedaço)')],
+    abertas: {}, vendas: []
+  };
+}
+let db;
+try { db = JSON.parse(localStorage.getItem(KEY)); } catch (e) { }
+if (!db || !db.itens) db = seed();
+const save = () => localStorage.setItem(KEY, JSON.stringify(db));
+save();
+if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+
+const ui = { v: 'lancar', sel: null, cob: '', pag: null, rec: 0, pp: 'dia', dia: ymd(Date.now()) };
+const item = id => db.itens.find(x => x.id === id);
+const ICONES = {
+  pastel: ['Pastel', '#f26b5b', '<path d="M3 25 L37 25 L37 22 Q37 5 20 5 Q3 5 3 22 Z"/><path d="M8 25v-3M14 25v-3M20 25v-3M26 25v-3M32 25v-3"/>'],
+  copo: ['Copo / suco', '#e0b04a', '<path d="M12 4h16l-2 24H14z"/><path d="M13 11h14"/>'],
+  cafe: ['Café', '#e0b04a', '<path d="M9 10h18v10a6 6 0 0 1-6 6h-6a6 6 0 0 1-6-6z"/><path d="M27 13h3a3 3 0 0 1 0 6h-3"/><path d="M15 2v4M21 2v4"/>'],
+  lata: ['Lata / bebida', '#5aa2e8', '<path d="M13 4h14v24H13z"/><path d="M13 9h14M13 23h14"/>'],
+  garrafa: ['Garrafa / água', '#5aa2e8', '<path d="M17 2h6v4l3 5v17H14V11l3-5z"/><path d="M14 16h12"/>'],
+  bolo: ['Bolo', '#b88ae0', '<path d="M5 26h30V14L5 6z"/><path d="M5 17h30"/>']
+};
+function iconeAuto(i) {
+  const t = (i.nome + ' ' + i.cat).toLowerCase();
+  if (/caf/.test(t)) return 'cafe';
+  if (/bolo/.test(t)) return 'bolo';
+  if (/[áa]gua/.test(t)) return 'garrafa';
+  if (/suco/.test(t)) return 'copo';
+  if (/lata|coca|guaran|refri|del val|bebida|cerveja/.test(t)) return 'lata';
+  return 'pastel';
+}
+const iconeSvg = i => { const k = ICONES[i.icone] ? i.icone : iconeAuto(i), c = ICONES[k]; return `<svg viewBox="0 0 40 30" fill="none" stroke="${c[1]}" stroke-width="2.5" stroke-linejoin="round" aria-hidden="true">${c[2]}</svg>`; };
+function linhas(f) {
+  const a = db.abertas[String(f)]; if (!a) return [];
+  return Object.entries(a.itens).map(([id, q]) => { const it = item(id); return it && q > 0 ? { id, q, nome: it.nome, cat: it.cat, preco: it.preco } : null; }).filter(Boolean);
+}
+const totalF = f => linhas(f).reduce((s, l) => s + l.q * l.preco, 0);
+const qtdF = f => linhas(f).reduce((s, l) => s + l.q, 0);
+const abertasNums = () => Object.keys(db.abertas).map(Number).filter(n => qtdF(n) > 0).sort((a, b) => a - b);
+
+const ICON_GEAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>';
+const ICON_CHART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>';
+const tools = () => `<div class="tools"><button class="tool" data-a="go" data-v="config">${ICON_GEAR}Configurar</button><button class="tool" data-a="go" data-v="painel">${ICON_CHART}Vendas</button></div>`;
+
+function header() {
+  const work = ui.v === 'lancar';
+  const sub = work ? `${abertasNums().length} ficha(s) em aberto` : (ui.v === 'config' ? 'Configurações' : 'Painel de vendas');
+  const right = work ? '' : `<button class="tab on" data-a="go" data-v="lancar">Voltar</button>`;
+  return `<header><div><span class="brand">PASTELARIA</span><span class="sub">${sub}</span></div>${right}</header>`;
+}
+
+function vLancar() {
+  let f = '';
+  for (let n = 1; n <= db.nFichas; n++) {
+    const q = qtdF(n), cl = n === ui.sel ? 'f sel' : q ? 'f ab' : 'f';
+    f += `<button class="${cl}" data-a="sel" data-v="${n}">${n}${q ? `<span class="b">${q}</span>` : ''}</button>`;
+  }
+  const aside = `<aside><div style="display:flex;justify-content:space-between;align-items:baseline"><h2 class="h2">FICHAS</h2><span class="mut" style="font-size:13px">toque na ficha do cliente</span></div><div class="fichas">${f}</div>${tools()}</aside>`;
+  if (!ui.sel) return aside + `<main><div class="empty"><div class="h1" style="color:var(--mu)">Escolha uma ficha</div>Toque no número da ficha que você entregou ao cliente.</div></main>`;
+  const ls = linhas(ui.sel), qmap = Object.fromEntries(ls.map(l => [l.id, l.q]));
+  let grupos = '';
+  db.cats.forEach((c, ci) => {
+    const its = db.itens.filter(i => i.cat === c); if (!its.length) return;
+    grupos += `<div><div class="lbl">${esc(c)}</div><div class="prods">${its.map(i => `<button class="prod${qmap[i.id] ? ' on' : ''}" data-a="add" data-v="${i.id}">${qmap[i.id] ? `<span class="q">${qmap[i.id]}</span>` : ''}${iconeSvg(i)}<span class="n">${esc(i.nome)}</span><span class="p">${R(i.preco)}</span></button>`).join('')}</div></div>`;
+  });
+  const chips = ls.length ? ls.map(l => `<button class="chip" data-a="rem" data-v="${l.id}">${l.q}× ${esc(l.nome)}<span>−</span></button>`).join('') : '<span class="mut">Nada lançado ainda nesta ficha.</span>';
+  return aside + `<main><div class="scroll"><div style="display:flex;align-items:baseline;gap:14px"><h1 class="h1">FICHA ${ui.sel}</h1><span class="mut">cada toque soma 1 item</span></div>${grupos || '<div class="empty">Cardápio vazio. Toque em Configurar para cadastrar.</div>'}</div>
+  <footer><div class="chips">${chips}</div><div class="tot"><small>Total da ficha</small><div>${R(totalF(ui.sel))}</div></div>
+  <button class="big" style="padding:0 40px" data-a="pagar" ${ls.length ? '' : 'disabled'}>PAGAR</button></footer></main>`;
+}
+
+function vModal() {
+  const f = ui.cob, ls = linhas(f);
+  if (!ls.length) { ui.modal = false; return ''; }
+  const tot = totalF(f), a = db.abertas[f];
+  const P = [['dinheiro', 'DINHEIRO', 'calcula o troco', '#2e7d4f'], ['cartao', 'CARTÃO', 'débito ou crédito', '#1f4a6e'], ['pix', 'PIX', 'transferência', '#1d5a5a']];
+  let din = '';
+  if (ui.pag === 'dinheiro') {
+    const troco = ui.rec - tot;
+    din = `<div class="card" style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-size:18px"><span>Recebido: <b>${R(ui.rec)}</b></span><span>Troco: <b style="color:${troco >= 0 ? '#5fd38d' : 'var(--red2)'};font-size:24px">${ui.rec ? R(Math.max(troco, 0)) : '—'}</b>${ui.rec && troco < 0 ? ' <span style="color:var(--red2)">(falta ' + R(-troco) + ')</span>' : ''}</span></div>
+    <div class="notas"><button data-a="nota" data-v="exato">Valor exato</button>${[2, 5, 10, 20, 50, 100].map(v => `<button data-a="nota" data-v="${v}">+ R$ ${v}</button>`).join('')}<button data-a="nota" data-v="0" style="color:var(--mu)">Zerar</button></div></div>`;
+  }
+  const podeFin = ui.pag && (ui.pag !== 'dinheiro' || ui.rec === 0 || ui.rec >= tot);
+  return `<div class="ov"><div class="modal"><div class="scroll">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:14px"><div><h1 class="h1" style="display:inline">PAGAR · FICHA ${esc(f)}</h1> <span class="mut">aberta às ${hhmm(a.t)}</span></div><button class="ib" style="width:56px;height:56px;font-size:22px" data-a="fechar" aria-label="Fechar">✕</button></div>
+  <div class="box">${ls.map(l => `<div class="row"><span class="qq">${l.q}×</span><span class="nn">${esc(l.nome)}</span><span class="vv">${R(l.q * l.preco)}</span></div>`).join('')}
+  <div class="totrow"><span class="mut" style="font-size:18px;font-weight:700">TOTAL</span><span class="h1" style="font-size:44px">${R(tot)}</span></div></div>
+  <div><div class="lbl">Como o cliente pagou?</div><div class="pag">${P.map(p => `<button class="${ui.pag === p[0] ? 'on' : ''}" style="background:${p[3]}" data-a="pag" data-v="${p[0]}"><b>${p[1]}</b><small>${p[2]}</small></button>`).join('')}</div></div>
+  ${din}</div>
+  <footer><button class="ghost" data-a="fechar">Voltar</button><button class="big" style="flex:1" data-a="fin" ${podeFin ? '' : 'disabled'}>${ui.pag ? 'FINALIZAR VENDA' : 'ESCOLHA COMO PAGOU'}</button></footer></div></div>`;
+}
+
+function vConfig() {
+  let cats = '';
+  db.cats.forEach((c, ci) => {
+    const its = db.itens.filter(i => i.cat === c);
+    cats += `<div class="card"><div class="cfr" style="border-bottom:2px solid var(--ln2)"><input class="nm" style="font-weight:700;color:var(--red2)" value="${esc(c)}" data-c="cat" data-v="${ci}" aria-label="Nome da categoria">
+    <button class="ib" data-a="catMv" data-v="${ci}|-1" aria-label="Subir categoria">↑</button><button class="ib" data-a="catMv" data-v="${ci}|1" aria-label="Descer categoria">↓</button><button class="ib" data-a="catDel" data-v="${ci}" aria-label="Apagar categoria">✕</button></div>
+    ${its.map(i => `<div class="cfr"><input class="nm" value="${esc(i.nome)}" data-c="nome" data-v="${i.id}" aria-label="Nome do item"><span class="mut">R$</span><input class="pr" inputmode="decimal" value="${i.preco.toFixed(2).replace('.', ',')}" data-c="preco" data-v="${i.id}" aria-label="Preço"><select data-c="icone" data-v="${i.id}" aria-label="Desenho">${Object.entries(ICONES).map(([k, v]) => `<option value="${k}" ${(ICONES[i.icone] ? i.icone : iconeAuto(i)) === k ? 'selected' : ''}>${v[0]}</option>`).join('')}</select>
+    <button class="ib" data-a="itMv" data-v="${i.id}|-1" aria-label="Subir">↑</button><button class="ib" data-a="itMv" data-v="${i.id}|1" aria-label="Descer">↓</button><button class="ib" data-a="itDel" data-v="${i.id}" aria-label="Apagar item">✕</button></div>`).join('')}
+    <div style="padding-top:10px"><button class="btn" data-a="itAdd" data-v="${ci}">+ Adicionar item em ${esc(c)}</button></div></div>`;
+  });
+  return `<div class="page"><div class="wrap">
+  <div class="card top" style="justify-content:space-between"><div><div class="h2">FICHAS</div><div class="mut" style="font-size:14px">Quantas fichas numeradas você tem</div></div>
+  <div class="top"><button class="ib" data-a="nf" data-v="-5">−5</button><button class="ib" data-a="nf" data-v="-1">−</button><span class="h1" style="width:80px;text-align:center">${db.nFichas}</span><button class="ib" data-a="nf" data-v="1">+</button><button class="ib" data-a="nf" data-v="5">+5</button></div></div>
+  <div class="top" style="justify-content:space-between"><div class="h2">CARDÁPIO E PREÇOS</div><button class="btn" data-a="catAdd">+ Nova categoria</button></div>
+  ${cats}
+  <div class="card"><div class="h2">BACKUP</div><p class="mut" style="margin:6px 0 14px">Os dados ficam guardados neste iPad. Faça uma cópia de vez em quando.</p>
+  <div class="top"><button class="btn" data-a="exp">Salvar cópia (arquivo)</button><label class="btn">Restaurar cópia<input type="file" accept=".json,application/json" data-c="imp" style="display:none"></label></div></div>
+  </div></div>`;
+}
+
+function shiftDia(n) {
+  const d = new Date(ui.dia + 'T12:00:00');
+  if (ui.pp === 'dia') d.setDate(d.getDate() + n); else { d.setDate(1); d.setMonth(d.getMonth() + n); }
+  ui.dia = ymd(d);
+}
+function vPainel() {
+  const pre = ui.pp === 'dia' ? ui.dia : ui.dia.slice(0, 7);
+  const vs = db.vendas.filter(v => ymd(v.ts).startsWith(pre)).sort((a, b) => b.ts - a.ts);
+  const fat = vs.reduce((s, v) => s + v.total, 0);
+  const past = vs.reduce((s, v) => s + v.itens.filter(i => /past/i.test(i.cat)).reduce((a, i) => a + i.q, 0), 0);
+  const d = new Date(ui.dia + 'T12:00:00');
+  const label = ui.pp === 'dia' ? d.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) : d.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+  const P = [['dinheiro', 'Dinheiro', '#2e7d4f'], ['cartao', 'Cartão', '#2f7bc0'], ['pix', 'Pix', '#2aa198']];
+  const pg = P.map(p => { const x = vs.filter(v => v.pagto === p[0]); const t = x.reduce((s, v) => s + v.total, 0); return `<div style="display:flex;align-items:center;gap:14px;padding:8px 0"><b style="width:90px">${p[1]}</b><div class="bar"><i style="width:${fat ? t / fat * 100 : 0}%;background:${p[2]}"></i></div><span class="mut" style="width:80px" class="r">${x.length} venda(s)</span><b style="width:120px;text-align:right">${R(t)}</b></div>`; }).join('');
+  const agg = {};
+  vs.forEach(v => v.itens.forEach(i => { const k = i.nome; agg[k] = agg[k] || { nome: i.nome, cat: i.cat, q: 0, t: 0 }; agg[k].q += i.q; agg[k].t += i.q * i.preco; }));
+  const its = Object.values(agg).sort((a, b) => b.q - a.q);
+  let porDia = '';
+  if (ui.pp === 'mes') {
+    const dd = {}; vs.forEach(v => { const k = ymd(v.ts); dd[k] = dd[k] || { n: 0, t: 0 }; dd[k].n++; dd[k].t += v.total; });
+    porDia = `<div class="card"><div class="h2" style="margin-bottom:8px">POR DIA</div><table><tr><th>Dia</th><th class="r">Vendas</th><th class="r">Faturamento</th></tr>${Object.keys(dd).sort().reverse().map(k => `<tr data-a="verDia" data-v="${k}"><td>${k.split('-').reverse().join('/')}</td><td class="r">${dd[k].n}</td><td class="r"><b>${R(dd[k].t)}</b></td></tr>`).join('') || '<tr><td colspan="3" class="mut">Sem vendas.</td></tr>'}</table></div>`;
+  }
+  const lista = ui.pp === 'dia' ? `<div class="card"><div class="h2" style="margin-bottom:8px">VENDAS DO DIA</div><table><tr><th>Hora</th><th>Ficha</th><th>Itens</th><th>Pagamento</th><th class="r">Total</th><th></th></tr>
+  ${vs.map(v => `<tr><td>${hhmm(v.ts)}</td><td><b>${v.ficha}</b></td><td class="mut" style="font-size:14px">${esc(v.itens.map(i => i.q + '× ' + i.nome).join(', '))}</td><td>${{ dinheiro: 'Dinheiro', cartao: 'Cartão', pix: 'Pix' }[v.pagto]}</td><td class="r"><b>${R(v.total)}</b></td><td class="r"><button class="ib" data-a="vDel" data-v="${v.id}" aria-label="Excluir venda">✕</button></td></tr>`).join('') || '<tr><td colspan="6" class="mut">Nenhuma venda neste dia.</td></tr>'}</table></div>` : '';
+  return `<div class="page"><div class="wrap">
+  <div class="top" style="justify-content:space-between"><div class="seg"><button class="${ui.pp === 'dia' ? 'on' : ''}" data-a="pp" data-v="dia">Dia</button><button class="${ui.pp === 'mes' ? 'on' : ''}" data-a="pp" data-v="mes">Mês</button></div>
+  <div class="top"><button class="ib" data-a="dia" data-v="-1" aria-label="Anterior">◀</button><span style="font-size:18px;font-weight:700;min-width:300px;text-align:center;text-transform:capitalize">${label}</span><button class="ib" data-a="dia" data-v="1" aria-label="Próximo">▶</button>
+  <input type="date" value="${ui.dia}" data-c="dia" aria-label="Escolher data"><button class="btn" data-a="hoje">Hoje</button></div></div>
+  <div class="kpis"><div class="card kpi"><small>Faturamento</small><div>${R(fat)}</div></div><div class="card kpi"><small>Vendas (fichas)</small><div>${vs.length}</div></div><div class="card kpi"><small>Ticket médio</small><div>${R(vs.length ? fat / vs.length : 0)}</div></div><div class="card kpi"><small>Pastéis vendidos</small><div>${past}</div></div></div>
+  <div class="card"><div class="h2" style="margin-bottom:6px">FORMAS DE PAGAMENTO</div>${pg}</div>
+  <div class="card"><div class="h2" style="margin-bottom:8px">O QUE MAIS VENDEU</div><table><tr><th>Item</th><th>Categoria</th><th class="r">Qtd</th><th class="r">Valor</th></tr>${its.map(i => `<tr><td><b>${esc(i.nome)}</b></td><td class="mut">${esc(i.cat)}</td><td class="r">${i.q}</td><td class="r">${R(i.t)}</td></tr>`).join('') || '<tr><td colspan="4" class="mut">Sem vendas.</td></tr>'}</table></div>
+  ${porDia}${lista}</div></div>`;
+}
+
+const root = document.getElementById('root');
+function render() {
+  const st = root.querySelector('.scroll, .page'); const y = st ? st.scrollTop : 0;
+  const view = { lancar: vLancar, config: vConfig, painel: vPainel }[ui.v]();
+  root.innerHTML = header() + (ui.v === 'lancar' ? `<div class="body">${view}</div>` : view) + (ui.v === 'lancar' && ui.modal ? vModal() : '');
+  const n = root.querySelector('.scroll, .page'); if (n && keepScroll) n.scrollTop = y;
+  keepScroll = false;
+}
+let keepScroll = false;
+function toast(m) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = m; document.body.appendChild(t); setTimeout(() => t.remove(), 2200); }
+
+const act = {
+  go: v => { ui.v = v; ui.modal = false; },
+  sel: v => { ui.sel = ui.sel === +v ? null : +v; },
+  add: id => { keepScroll = true; const k = String(ui.sel); const a = db.abertas[k] || (db.abertas[k] = { t: Date.now(), itens: {} }); a.itens[id] = (a.itens[id] || 0) + 1; save(); },
+  rem: id => { keepScroll = true; const k = String(ui.sel), a = db.abertas[k]; if (!a) return; a.itens[id]--; if (a.itens[id] <= 0) delete a.itens[id]; if (!Object.keys(a.itens).length) delete db.abertas[k]; save(); },
+  pronto: () => { ui.sel = null; },
+  pagar: () => { ui.cob = String(ui.sel); ui.pag = null; ui.rec = 0; ui.modal = true; },
+  fechar: () => { ui.modal = false; },
+  pag: v => { keepScroll = true; ui.pag = v; ui.rec = 0; },
+  nota: v => { keepScroll = true; if (v === 'exato') ui.rec = totalF(ui.cob); else if (v === '0') ui.rec = 0; else ui.rec += +v; },
+  fin: () => {
+    const f = ui.cob, ls = linhas(f); if (!ls.length || !ui.pag) return;
+    db.vendas.push({ id: uid(), ts: Date.now(), ficha: +f, pagto: ui.pag, total: totalF(f), itens: ls.map(l => ({ nome: l.nome, cat: l.cat, preco: l.preco, q: l.q })) });
+    delete db.abertas[f]; save();
+    toast('Venda da ficha ' + f + ' finalizada'); ui.cob = ''; ui.pag = null; ui.rec = 0; ui.modal = false; ui.sel = null;
+  },
+  nf: v => { db.nFichas = Math.max(1, Math.min(200, db.nFichas + +v)); save(); },
+  catAdd: () => { keepScroll = true; let n = 'Nova categoria', i = 2; while (db.cats.includes(n)) n = 'Nova categoria ' + i++; db.cats.push(n); save(); },
+  catMv: v => { keepScroll = true; const [i, d] = v.split('|').map(Number), j = i + d; if (j < 0 || j >= db.cats.length) return; [db.cats[i], db.cats[j]] = [db.cats[j], db.cats[i]]; save(); },
+  catDel: ci => { keepScroll = true; const c = db.cats[+ci]; const n = db.itens.filter(i => i.cat === c).length; if (!confirm(n ? `Apagar a categoria "${c}" e seus ${n} item(ns)?` : `Apagar a categoria "${c}"?`)) return; db.itens = db.itens.filter(i => i.cat !== c); db.cats.splice(+ci, 1); save(); },
+  itAdd: ci => { keepScroll = true; db.itens.push({ id: uid(), cat: db.cats[+ci], nome: 'Novo item', preco: 0 }); save(); },
+  itMv: v => { keepScroll = true; const [id, d] = v.split('|'); const i = db.itens.findIndex(x => x.id === id), cat = db.itens[i].cat; let j = i + +d; while (j >= 0 && j < db.itens.length && db.itens[j].cat !== cat) j += +d; if (j < 0 || j >= db.itens.length) return; [db.itens[i], db.itens[j]] = [db.itens[j], db.itens[i]]; save(); },
+  itDel: id => { keepScroll = true; const it = item(id); if (!confirm(`Apagar "${it.nome}" do cardápio?`)) return; db.itens = db.itens.filter(x => x.id !== id); save(); },
+  exp: () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(db, null, 1)], { type: 'application/json' })); a.download = 'pastelaria-backup-' + ymd(Date.now()) + '.json'; document.body.appendChild(a); a.click(); a.remove(); },
+  pp: v => { ui.pp = v; },
+  dia: v => shiftDia(+v),
+  hoje: () => { ui.dia = ymd(Date.now()); },
+  verDia: v => { ui.pp = 'dia'; ui.dia = v; },
+  vDel: id => { keepScroll = true; const v = db.vendas.find(x => x.id === id); if (!confirm(`Excluir a venda da ficha ${v.ficha} (${R(v.total)})?`)) return; db.vendas = db.vendas.filter(x => x.id !== id); save(); }
+};
+
+root.addEventListener('click', e => {
+  const b = e.target.closest('[data-a]'); if (!b || b.disabled) return;
+  if (act[b.dataset.a]) { act[b.dataset.a](b.dataset.v); render(); }
+});
+root.addEventListener('change', e => {
+  const el = e.target, c = el.dataset.c, v = el.dataset.v; if (!c) return;
+  if (c === 'nome') { const it = item(v); it.nome = el.value.trim() || it.nome; save(); }
+  else if (c === 'preco') { const it = item(v); const p = parseFloat(el.value.replace(/\s/g, '').replace(',', '.')); it.preco = isNaN(p) ? 0 : Math.round(p * 100) / 100; el.value = it.preco.toFixed(2).replace('.', ','); save(); }
+  else if (c === 'cat') { const old = db.cats[+v], nw = el.value.trim(); if (!nw || db.cats.includes(nw)) { el.value = old; return; } db.cats[+v] = nw; db.itens.forEach(i => { if (i.cat === old) i.cat = nw; }); save(); }
+  else if (c === 'icone') { item(v).icone = el.value; save(); }
+  else if (c === 'dia') { if (el.value) { ui.dia = el.value; render(); } }
+  else if (c === 'imp') {
+    const file = el.files[0]; if (!file) return;
+    const r = new FileReader();
+    r.onload = () => { try { const d = JSON.parse(r.result); if (!d.itens || !d.vendas || !d.cats) throw 0; if (!confirm('Substituir todos os dados deste iPad pela cópia?')) return; db = d; save(); toast('Cópia restaurada'); render(); } catch (x) { alert('Arquivo inválido.'); } };
+    r.readAsText(file);
+  }
+});
+render();
+</script>
+</body>
+</html>
