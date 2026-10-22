@@ -11,7 +11,8 @@
 <title>Pastelaria</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap">
 <style>
-:root{--bg:#12161d;--p1:#161b24;--p2:#181d26;--card:#1f2632;--k:#232a36;--ln:#2a3140;--ln2:#3a4253;--tx:#e8eaee;--mu:#a3abb9;--red:#e04a3a;--red2:#f26b5b;--ok:#2e7d4f}
+:root{--bg:#12161d;--p1:#161b24;--p2:#181d26;--card:#1f2632;--k:#232a36;--ln:#2a3140;--ln2:#3a4253;--tx:#e8eaee;--mu:#a3abb9;--red:#e04a3a;--red2:#f26b5b;--ok:#2e7d4f;--hi:#fff;--box:#1b212b;--in:#0d1016;--pb:#2f3747;--pon:#22191b;--fm:#8b93a1;--okt:#5fd38d}
+html.claro{--bg:#eef0f3;--p1:#fff;--p2:#fff;--card:#fff;--k:#e6e9ee;--ln:#dde1e7;--ln2:#c3c9d3;--tx:#1d232c;--mu:#5b6472;--red2:#c4392a;--hi:#12161d;--box:#fff;--in:#f7f8fa;--pb:#d3d8e0;--pon:#fdecea;--fm:#6b7380;--okt:#1f7a45}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
 button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;background:none;border:0}
@@ -19,7 +20,7 @@ button:active{transform:scale(.96)}
 button:disabled{opacity:.35}
 #root{height:100%;display:flex;flex-direction:column;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 header{height:64px;flex:none;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:var(--p2);border-bottom:1px solid var(--ln)}
-.brand{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:26px;color:#fff}
+.brand{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:26px;color:var(--hi)}
 .sub{font-size:14px;color:var(--mu);margin-left:12px}
 .tabs{display:flex;gap:10px}
 .tab{height:48px;padding:0 26px;border-radius:0;border:1px solid var(--ln2);color:var(--mu);font-weight:700;font-size:17px}
@@ -28,8 +29,8 @@ header{height:64px;flex:none;padding:0 20px;display:flex;align-items:center;just
 aside{width:clamp(250px,32vw,400px);flex:none;padding:14px;background:var(--p1);border-right:1px solid var(--ln);display:flex;flex-direction:column;gap:12px;min-height:0}
 .h2{font-family:Oswald,Impact,sans-serif;font-weight:500;font-size:22px;margin:0;letter-spacing:.5px}
 .fichas{flex:1;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px;align-content:start}
-.f{position:relative;height:58px;border-radius:0;background:var(--k);color:#8b93a1;font-family:Oswald,Impact,sans-serif;font-size:24px;font-weight:700}
-.f.ab{border:2px solid var(--red);background:var(--card);color:#fff}
+.f{position:relative;height:58px;border-radius:0;background:var(--k);color:var(--fm);font-family:Oswald,Impact,sans-serif;font-size:24px;font-weight:700}
+.f.ab{border:2px solid var(--red);background:var(--card);color:var(--hi)}
 .f.sel{background:var(--red);color:#fff;border:0}
 .f .b{position:absolute;top:4px;right:6px;font:700 11px Inter,sans-serif;color:var(--red2)}
 .f.sel .b{color:#fff}
@@ -38,12 +39,14 @@ aside{width:clamp(250px,32vw,400px);flex:none;padding:14px;background:var(--p1);
 .tool svg{width:22px;height:22px}
 main{flex:1;display:flex;flex-direction:column;min-width:0;min-height:0}
 .scroll{flex:1;overflow:auto;padding:18px 22px;display:flex;flex-direction:column;gap:16px}
-.h1{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:clamp(28px,4vw,40px);margin:0;color:#fff}
+.h1{font-family:Oswald,Impact,sans-serif;font-weight:700;font-size:clamp(28px,4vw,40px);margin:0;color:var(--hi)}
 .lbl{font-size:13px;font-weight:700;letter-spacing:1px;color:var(--red2);text-transform:uppercase;margin-bottom:8px}
 .prods{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-.prod{position:relative;height:104px;border-radius:0;border:1px solid #2f3747;background:#1b212b;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 8px}
-.prod.on{border:2px solid var(--red);background:#22191b}
+.prod{position:relative;height:104px;border-radius:0;border:1px solid var(--pb);background:var(--box);color:var(--hi);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 8px}
+.prod.on{border:2px solid var(--red);background:var(--pon)}
 .prod svg{width:40px;height:30px;flex:none}
+html.claro .prod svg{filter:brightness(.78) saturate(1.3)}
+html.claro .ov{background:#12161d99}
 .prod .n{font-size:16px;font-weight:700;text-align:center;line-height:1.15}
 .prod .p{font-size:13px;color:var(--mu)}
 .prod .q{position:absolute;top:0;right:0;min-height:30px;min-width:26px;height:26px;border-radius:0;background:var(--red);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;padding:0 6px}
@@ -56,14 +59,14 @@ footer{flex:none;min-height:104px;padding:14px 22px;background:var(--p2);border-
 .big{height:68px;padding:0 24px;border-radius:0;background:var(--red);color:#fff;font-family:Oswald,Impact,sans-serif;font-size:21px;font-weight:700}
 .ghost{height:68px;padding:0 18px;border-radius:0;border:1px solid var(--ln2);color:var(--mu);font-size:15px;font-weight:600}
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--mu);font-size:19px;gap:8px;text-align:center;padding:30px}
-.disp{height:80px;flex:none;border-radius:0;background:#0d1016;border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-family:Oswald,Impact,sans-serif;font-size:50px;font-weight:700;color:#fff}
+.disp{height:80px;flex:none;border-radius:0;background:var(--in);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-family:Oswald,Impact,sans-serif;font-size:50px;font-weight:700;color:#fff}
 .kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:none}
 .kp button{height:62px;border-radius:0;background:var(--k);font-family:Oswald,Impact,sans-serif;font-size:28px;font-weight:700}
 .kp .x{font-size:17px;color:var(--mu);font-family:Inter,sans-serif}
 .abl{flex:1;display:flex;flex-wrap:wrap;gap:8px;overflow:auto;align-content:start}
 .abl button{min-width:56px;height:48px;padding:0 8px;border-radius:0;border:2px solid var(--red);background:var(--card);font-family:Oswald,Impact,sans-serif;font-size:20px;font-weight:700}
 .abl button.on{background:var(--red)}
-.box{border-radius:0;background:#1b212b;border:1px solid var(--ln)}
+.box{border-radius:0;background:var(--box);border:1px solid var(--ln)}
 .row{min-height:54px;padding:6px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--ln);font-size:18px}
 .row .qq{width:44px;font-family:Oswald,Impact,sans-serif;font-weight:700;color:var(--red2)}
 .row .nn{flex:1;font-weight:600}
@@ -73,20 +76,20 @@ footer{flex:none;min-height:104px;padding:14px 22px;background:var(--p2);border-
 .pag button{height:100px;border-radius:0;border:1px solid var(--ln2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff}
 .pag b{font-family:Oswald,Impact,sans-serif;font-size:26px}
 .pag small{font-size:13px;opacity:.85}
-.pag .on{border:3px solid #fff}
+.pag .on{border:3px solid var(--hi);outline:2px solid var(--red)}
 .notas{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .notas button{height:52px;padding:0 16px;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-weight:700;font-size:16px}
 .page{flex:1;overflow:auto;padding:20px 24px 60px}
 .wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-input,select{font:inherit;color:var(--tx);background:#0d1016;border:1px solid var(--ln2);border-radius:0;height:48px;padding:0 12px;font-size:16px;user-select:text;-webkit-user-select:text;min-width:0}
+input,select{font:inherit;color:var(--tx);background:var(--in);border:1px solid var(--ln2);border-radius:0;height:48px;padding:0 12px;font-size:16px;user-select:text;-webkit-user-select:text;min-width:0}
 .cfr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--ln)}
 .cfr .nm{flex:1 1 200px}
 .cfr .pr{width:120px;text-align:right}
 .ib{width:48px;height:48px;flex:none;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-size:18px;display:flex;align-items:center;justify-content:center}
 .btn{height:48px;padding:0 18px;border-radius:0;border:1px solid var(--ln2);background:var(--k);font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
 .btn.red{background:var(--red);border-color:var(--red);color:#fff}
-.card{padding:18px;border-radius:0;background:#1b212b;border:1px solid var(--ln)}
+.card{padding:18px;border-radius:0;background:var(--box);border:1px solid var(--ln)}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .kpi small{color:var(--mu);font-size:13px;font-weight:600}
 .kpi div{font-family:Oswald,Impact,sans-serif;font-size:32px;font-weight:700;margin-top:4px}
@@ -209,7 +212,7 @@ function vModal() {
   let din = '';
   if (ui.pag === 'dinheiro') {
     const troco = ui.rec - tot;
-    din = `<div class="card" style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-size:18px"><span>Recebido: <b>${R(ui.rec)}</b></span><span>Troco: <b style="color:${troco >= 0 ? '#5fd38d' : 'var(--red2)'};font-size:24px">${ui.rec ? R(Math.max(troco, 0)) : '—'}</b>${ui.rec && troco < 0 ? ' <span style="color:var(--red2)">(falta ' + R(-troco) + ')</span>' : ''}</span></div>
+    din = `<div class="card" style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;justify-content:space-between;font-size:18px"><span>Recebido: <b>${R(ui.rec)}</b></span><span>Troco: <b style="color:${troco >= 0 ? 'var(--okt)' : 'var(--red2)'};font-size:24px">${ui.rec ? R(Math.max(troco, 0)) : '—'}</b>${ui.rec && troco < 0 ? ' <span style="color:var(--red2)">(falta ' + R(-troco) + ')</span>' : ''}</span></div>
     <div class="notas"><button data-a="nota" data-v="exato">Valor exato</button>${[2, 5, 10, 20, 50, 100].map(v => `<button data-a="nota" data-v="${v}">+ R$ ${v}</button>`).join('')}<button data-a="nota" data-v="0" style="color:var(--mu)">Zerar</button></div></div>`;
   }
   const podeFin = ui.pag && (ui.pag !== 'dinheiro' || ui.rec === 0 || ui.rec >= tot);
@@ -233,6 +236,8 @@ function vConfig() {
     <div style="padding-top:10px"><button class="btn" data-a="itAdd" data-v="${ci}">+ Adicionar item em ${esc(c)}</button></div></div>`;
   });
   return `<div class="page"><div class="wrap">
+  <div class="card top" style="justify-content:space-between"><div><div class="h2">APARÊNCIA</div><div class="mut" style="font-size:14px">Cor do sistema</div></div>
+  <div class="seg"><button class="${db.tema !== 'claro' ? 'on' : ''}" data-a="tema" data-v="escuro">Escuro</button><button class="${db.tema === 'claro' ? 'on' : ''}" data-a="tema" data-v="claro">Claro</button></div></div>
   <div class="card top" style="justify-content:space-between"><div><div class="h2">FICHAS</div><div class="mut" style="font-size:14px">Quantas fichas numeradas você tem</div></div>
   <div class="top"><button class="ib" data-a="nf" data-v="-5">−5</button><button class="ib" data-a="nf" data-v="-1">−</button><span class="h1" style="width:80px;text-align:center">${db.nFichas}</span><button class="ib" data-a="nf" data-v="1">+</button><button class="ib" data-a="nf" data-v="5">+5</button></div></div>
   <div class="top" style="justify-content:space-between"><div class="h2">CARDÁPIO E PREÇOS</div><button class="btn" data-a="catAdd">+ Nova categoria</button></div>
@@ -278,6 +283,8 @@ function vPainel() {
 
 const root = document.getElementById('root');
 function render() {
+  document.documentElement.classList.toggle('claro', db.tema === 'claro');
+  document.querySelector('meta[name=theme-color]').content = db.tema === 'claro' ? '#ffffff' : '#12161d';
   const st = root.querySelector('.scroll, .page'); const y = st ? st.scrollTop : 0;
   const view = { lancar: vLancar, config: vConfig, painel: vPainel }[ui.v]();
   root.innerHTML = header() + (ui.v === 'lancar' ? `<div class="body">${view}</div>` : view) + (ui.v === 'lancar' && ui.modal ? vModal() : '');
@@ -311,6 +318,7 @@ const act = {
   itMv: v => { keepScroll = true; const [id, d] = v.split('|'); const i = db.itens.findIndex(x => x.id === id), cat = db.itens[i].cat; let j = i + +d; while (j >= 0 && j < db.itens.length && db.itens[j].cat !== cat) j += +d; if (j < 0 || j >= db.itens.length) return; [db.itens[i], db.itens[j]] = [db.itens[j], db.itens[i]]; save(); },
   itDel: id => { keepScroll = true; const it = item(id); if (!confirm(`Apagar "${it.nome}" do cardápio?`)) return; db.itens = db.itens.filter(x => x.id !== id); save(); },
   exp: () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(db, null, 1)], { type: 'application/json' })); a.download = 'pastelaria-backup-' + ymd(Date.now()) + '.json'; document.body.appendChild(a); a.click(); a.remove(); },
+  tema: v => { keepScroll = true; db.tema = v; save(); },
   pp: v => { ui.pp = v; },
   dia: v => shiftDia(+v),
   hoje: () => { ui.dia = ymd(Date.now()); },
